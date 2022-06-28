@@ -56,13 +56,16 @@ public class MyAccountPage extends BasePage {
             float currencyValue = Float.parseFloat(price.replaceAll("[^\\d.]", ""));
             priceList.add(currencyValue);
         }
-        Float highestPrice = Collections.max(priceList);
+
+//        Float highestPrice = Collections.max(priceList);
+        Collections.max(priceList);
+        Float secondHighestPrice = priceList.get(priceList.size()-2);;
         for(WebElement block:rightBlocks){
 
             WebElement productPrice=block.findElement(By.cssSelector(".price.product-price"));
            String price=productPrice.getText();
             float currencyValue = Float.parseFloat(price.replaceAll("[^\\d.]", ""));
-            if(currencyValue==highestPrice){
+            if(currencyValue==secondHighestPrice){
                 Actions action = new Actions(driver);
                 action.moveToElement(block).perform();
                 System.out.println(price);
